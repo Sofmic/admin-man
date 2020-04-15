@@ -1,0 +1,13 @@
+#!/bin/bash
+
+#
+# Przed użycie należy dostosować nazwy interfejsów i połączeń do własnych potrzeb
+#
+
+nmcli con add type team con-name team0 ifname bond0 config '{"device": "team0","runner": {"name": "activebackup"}'
+nmcli con add type team-slave con-name team0-port1 ifname ens33 master bond0
+nmcli con add type team-slave con-name team0-port2 ifname ens36 master bond0
+
+#
+# Jeżeli system pokaże za dużo połączeń należy usunąć odpowiednie pliki konfiguracyjne z /etc/sysconfig/network-scripts/...
+#

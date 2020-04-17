@@ -1,3 +1,7 @@
+######          ######
+######  CENTOS  ######
+######          ######
+
 #!/bin/bash
 
 #
@@ -11,3 +15,12 @@ nmcli con add type team-slave con-name team0-port2 ifname ens36 master bond0
 #
 # Jeżeli system pokaże za dużo połączeń należy usunąć odpowiednie pliki konfiguracyjne z /etc/sysconfig/network-scripts/...
 #
+
+######          ######
+######  DEBIAN  ######
+######          ######
+
+# narzędzie GUI
+nm-connection-editor
+
+# na tekstową konfiguracje szkoda nerwów

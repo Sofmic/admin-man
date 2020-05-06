@@ -43,8 +43,7 @@ zone   \"1.168.192.in-addr.arpa\"       {
  ############################################################
  if [ ! -e /etc/bind/forward.$1.db ]
 then
- echo """$TTL    604800
-
+ echo """\$TTL    604800
 @       IN      SOA     ns1.$1. mail.$1. (
                               6         ; Serial
                          604820         ; Refresh
@@ -52,16 +51,16 @@ then
                         2419600         ; Expire
                          604600 )       ; Negative Cache TTL
 
-@       IN      NS      ns1.$1.
+@	IN      NS      ns1.$1.
+@ IN      A       192.168.1.103     
+ns1 IN       A      192.168.1.103
 
-primary IN       A      192.168.0.40
+$1. IN  MX  10  mail.$1.
 
-linuxtechi.local. IN  MX  10  mail.linuxtechi.local.
+www     IN       A       192.168.1.103
+mail    IN       A       192.168.1.103
 
-www     IN       A       192.168.0.50
-mail    IN       A       192.168.0.60
-
-ftp     IN      CNAME    www.linuxtechi.local.""" > /etc/bind/forward.$1.db
+ftp     IN      CNAME    $1.""" > /etc/bind/forward.$1.db
 else
   echo "Plik strefy wyszukiwania do przodu ISTNIEJE!!! [ /etc/bind/forward.$1.db ]"
 fi
@@ -70,7 +69,7 @@ fi
  if [ ! -e /etc/bind/reverse.$1.db ]
 then
  echo """
- $TTL    604800
+\$TTL    604800
 @       IN      SOA     $1. mail.$1. (
                              21         ; Serial
                          604820         ; Refresh

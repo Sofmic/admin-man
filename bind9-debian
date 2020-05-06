@@ -1,0 +1,92 @@
+#!/bin/bash
+
+############################
+
+#Jako parametr należy podać nazwe domeny np: ./bind9-debian dom.com
+
+###########################
+
+aptitude install bind9 bind9utils bind9-doc dnsutils && echo "[ Zainstalowano ]"
+echo "[ koniec instalacji ]"
+############################################################
+if [ ! -e /etc/bind/named.conf.local.options.backup ]
+then
+  cp /etc/bind/named.conf.options /etc/bind/named.conf.options.backup
+fi
+echo """options {
+        directory \"/var/cache/bind\";
+        auth-nxdomain no;    # conform to RFC1035
+        listen-on port 53 { localhost; 192.168.1.0/24; };
+        allow-query { localhost; 192.168.1.0/24; };  
+        forwarders { 8.8.8.8; };
+        dnssec-validation auto;
+        listen-on-v6 { any; };
+        recursion yes;
+        };""" > /etc/bind/named.conf.options
+
+############################################################
+if [ ! -e /etc/bind/named.conf.local.backup ]
+then
+  cp /etc/bind/named.conf.local /etc/bind/named.conf.local.backup
+fi
+echo """
+zone    \"$1\"   {
+        type master;
+        file  \"/etc/bind/forward.$1.db\";
+ };
+
+zone   \"1.168.192.in-addr.arpa\"       {
+       type master;
+       file    \"/etc/bind/reverse.$1.db\";
+ };"""  >> /etc/bind/named.conf.local
+ 
+ ############################################################
+ if [ ! -e /etc/bind/forward.$1.db ]
+then
+ echo """$TTL    604800
+
+@       IN      SOA     ns1.$1. mail.$1. (
+                              6         ; Serial
+                         604820         ; Refresh
+                          86600         ; Retry
+                        2419600         ; Expire
+                         604600 )       ; Negative Cache TTL
+
+@       IN      NS      ns1.$1.
+
+primary IN       A      192.168.0.40
+
+linuxtechi.local. IN  MX  10  mail.linuxtechi.local.
+
+www     IN       A       192.168.0.50
+mail    IN       A       192.168.0.60
+
+ftp     IN      CNAME    www.linuxtechi.local.""" > /etc/bind/forward.$1.db
+else
+  echo "Plik strefy wyszukiwania do przodu ISTNIEJE!!! [ /etc/bind/forward.$1.db ]"
+fi
+
+############################################################
+ if [ ! -e /etc/bind/reverse.$1.db ]
+then
+ echo """
+ $TTL    604800
+@       IN      SOA     $1. mail.$1. (
+                             21         ; Serial
+                         604820         ; Refresh
+                          864500        ; Retry
+                        2419270         ; Expire
+                         604880 )       ; Negative Cache TTL
+
+@       IN      NS      ns1.$1.
+ns1 IN      A       192.168.1.40
+
+103      IN      PTR     ns1.$1.
+103      IN      PTR     www.$1.
+103      IN      PTR     mail.$1.
+ """ > /etc/bind/reverse.$1.db
+else
+  echo "Plik strefy wyszukiwania wstecz ISTNIEJE!!! [ /etc/bind/reverse.$1.db ]"
+fi
+
+

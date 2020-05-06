@@ -9,7 +9,7 @@
 aptitude install bind9 bind9utils bind9-doc dnsutils && echo "[ Zainstalowano ]"
 echo "[ koniec instalacji ]"
 ############################################################
-if [ ! -e /etc/bind/named.conf.local.options.backup ]
+if [ ! -e /etc/bind/named.conf.options.backup ]
 then
   cp /etc/bind/named.conf.options /etc/bind/named.conf.options.backup
 fi
@@ -38,7 +38,7 @@ zone    \"$1\"   {
 zone   \"1.168.192.in-addr.arpa\"       {
        type master;
        file    \"/etc/bind/reverse.$1.db\";
- };"""  >> /etc/bind/named.conf.local
+ };"""  > /etc/bind/named.conf.local
  
  ############################################################
  if [ ! -e /etc/bind/forward.$1.db ]

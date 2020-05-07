@@ -5,6 +5,7 @@
 # Jako parametr należy podać nazwe domeny np: ./bind9-debian dom.com
 
 # Uwagi:
+# 
 # Linie oznaczone    #ADDRESS    wymagają dostosowania adresu.
 # /etc nie sprawdzi się jako folder dla stref podpisanych gdyż bind nie ma pozwolenia na dodawanie czegokolwiek do /etc/...
 
@@ -28,7 +29,7 @@ echo """options {
         listen-on port 53 { localhost; 192.168.1.0/24; };             #ADDRESS
         allow-query { localhost; 192.168.1.0/24; };                   #ADDRESS
         forwarders { 8.8.8.8; };                                      #ADDRESS
-        key-directory "var/cache/bind";
+        key-directory \"var/cache/bind\";
         listen-on-v6 { any; };
         recursion yes;
         };""" > /etc/bind/named.conf.options
@@ -41,7 +42,7 @@ fi
 echo """zone \"$1\" {
         type master;
         file \"/etc/bind/forward.$1.db\";
-        key-directory "/var/cache/bind";
+        key-directory \"/var/cache/bind\";
 	      auto-dnssec maintain;
 	      inline-signing yes;
  };
@@ -49,7 +50,7 @@ echo """zone \"$1\" {
 zone \"1.168.192.in-addr.arpa\" {                                    #ADDRESS
        type master;
        file \"/etc/bind/reverse.$1.db\";
-       key-directory "/var/cache/bind";
+       key-directory \"/var/cache/bind\";
 	     auto-dnssec maintain;
 	     inline-signing yes;
  };"""  > /etc/bind/named.conf.local

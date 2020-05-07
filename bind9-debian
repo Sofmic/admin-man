@@ -41,22 +41,22 @@ then
 fi
 echo """zone \"$1\" {
         type master;
-        file \"/etc/bind/forward.$1.db\";
+        file \"/var/cache/bind/master/forward.$1.db\";
         key-directory \"/var/cache/bind\";
-	      auto-dnssec maintain;
-	      inline-signing yes;
+	auto-dnssec maintain;
+	inline-signing yes;
  };
 
 zone \"1.168.192.in-addr.arpa\" {                                    #ADDRESS
        type master;
-       file \"/etc/bind/reverse.$1.db\";
+       file \"/var/cache/bind/master/reverse.$1.db\";
        key-directory \"/var/cache/bind\";
-	     auto-dnssec maintain;
-	     inline-signing yes;
+       auto-dnssec maintain;
+       inline-signing yes;
  };"""  > /etc/bind/named.conf.local
  
  ############################################################
- if [ ! -e /etc/bind/forward.$1.db ]
+ if [ ! -e /var/cache/bind/master/forward.$1.db ]
 then
  echo """\$TTL 604800
 @       IN      SOA     ns1.$1. mail.$1. (
@@ -75,13 +75,13 @@ $1. IN  MX  10  mail.$1.
 www     IN       A       192.168.1.103                             ;ADDRESS
 mail    IN       A       192.168.1.103                             ;ADDRESS
 
-ftp     IN      CNAME    $1.""" > /etc/bind/forward.$1.db
+ftp     IN      CNAME    $1.""" > /var/cache/bind/master/forward.$1.db
 else
-  echo "Plik strefy wyszukiwania do przodu ISTNIEJE!!! [ /etc/bind/forward.$1.db ]"
+  echo "Plik strefy wyszukiwania do przodu ISTNIEJE!!! [ /var/cache/bind/master/forward.$1.db ]"
 fi
 
 ############################################################
- if [ ! -e /etc/bind/reverse.$1.db ]
+ if [ ! -e /var/cache/bind/master/reverse.$1.db ]
 then
  echo """\$TTL 604800
 @       IN      SOA     $1. mail.$1. (
@@ -97,9 +97,9 @@ ns1 IN      A       192.168.1.103
 103      IN      PTR     ns1.$1.                                   ;ADDRESS
 103      IN      PTR     www.$1.                                   ;ADDRESS
 103      IN      PTR     mail.$1.                                  ;ADDRESS
- """ > /etc/bind/reverse.$1.db
+ """ > /var/cache/bind/master/reverse.$1.db
 else
-  echo "Plik strefy wyszukiwania wstecz ISTNIEJE!!! [ /etc/bind/reverse.$1.db ]"
+  echo "Plik strefy wyszukiwania wstecz ISTNIEJE!!! [ /var/cache/bind/master/reverse.$1.db ]"
 fi
 
 rndc reload

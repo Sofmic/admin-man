@@ -15,7 +15,7 @@ mkdir -p /var/cache/bind/master
 dnssec-keygen -b 2048 -K /var/cache/bind/ $1
 dnssec-keygen -b 2048 -f ksk -K /var/cache/bind/ $1
 chown -R bind:bind /var/cache/bind
-chmod -R 700/var/cache/bind
+chmod -R 700 /var/cache/bind
 
 ############################################################
 if [ ! -e /etc/bind/named.conf.options.backup ]

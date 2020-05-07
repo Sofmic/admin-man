@@ -67,13 +67,13 @@ then
                          604600 )       ; Negative Cache TTL
 
 @	IN      NS      ns1.$1.
-@ IN      A       192.168.1.103                                    #ADDRESS
-ns1 IN       A      192.168.1.103                                  #ADDRESS
+@ IN      A       192.168.1.103                                    ;DDRESS
+ns1 IN       A      192.168.1.103                                  ;ADDRESS
 
 $1. IN  MX  10  mail.$1.
 
-www     IN       A       192.168.1.103                             #ADDRESS
-mail    IN       A       192.168.1.103                             #ADDRESS
+www     IN       A       192.168.1.103                             ;ADDRESS
+mail    IN       A       192.168.1.103                             ;ADDRESS
 
 ftp     IN      CNAME    $1.""" > /etc/bind/forward.$1.db
 else
@@ -94,9 +94,9 @@ then
 @       IN      NS      ns1.$1.
 ns1 IN      A       192.168.1.103
 
-103      IN      PTR     ns1.$1.                                   #ADDRESS
-103      IN      PTR     www.$1.                                   #ADDRESS
-103      IN      PTR     mail.$1.                                  #ADDRESS
+103      IN      PTR     ns1.$1.                                   ;ADDRESS
+103      IN      PTR     www.$1.                                   ;ADDRESS
+103      IN      PTR     mail.$1.                                  ;ADDRESS
  """ > /etc/bind/reverse.$1.db
 else
   echo "Plik strefy wyszukiwania wstecz ISTNIEJE!!! [ /etc/bind/reverse.$1.db ]"

@@ -101,4 +101,9 @@ else
   echo "Plik strefy wyszukiwania wstecz ISTNIEJE!!! [ /etc/bind/reverse.$1.db ]"
 fi
 
+rndc reload
+rndc reconfig
+rndc sign $1
+rndc signing -list $1
+
 

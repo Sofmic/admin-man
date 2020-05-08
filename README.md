@@ -21,3 +21,4 @@
 */
 <li><a href="" target="_blank"></a></li>
 /*
+<a href="https://github.com/Sofmic/admin-man">GÓRA</a>

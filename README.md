@@ -1,3 +1,4 @@
+<a name="menu"></a>
 # ADMIN MAN
 
 <p1>Usługi internetowe</p1><br>

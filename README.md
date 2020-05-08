@@ -1,3 +1,3 @@
 # ADMIN MAN
 
-<p2>Konfiguracja sieci</p2>
+<p1>Konfiguracja sieci</p1>

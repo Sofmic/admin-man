@@ -1,0 +1,62 @@
+dnssec-keygen -a HMAC-MD5 -b 512 -r /dev/urandom -n USER ddns
+
+from *.private copy key value
+
+create ddns.key
+
+key ddns {
+        algorithm HMAC-MD5.SIG-ALG.REG.INT;
+        secret "<key>";
+};
+
+install -o root -g bind -m 0640 ddns.key /etc/bind/ddns.key
+install -o root -g root -m 0640 ddns.key /etc/dhcp/ddns.key
+
+add to /etc/bind/named.conf.local
+include "/etc/bind/ddns.key";
+
+and to both zones 
+notify no;  ;only if use private address
+allow-update { key ddns; };
+
+
+#############################################
+edit /etc/dhcp/dhcpd.conf
+authoritative;
+option domain-name "dom.com";
+option domain-name-servers ns1.dom.com;
+
+ddns-updates on;
+ddns-update-style interim;
+ignore client-updates;
+update-static-leases on;
+
+default-lease-time 600;
+max-lease-time 7200;
+log-facility local7;
+
+
+include "/etc/dhcp/ddns.key";
+
+zone dom.com. {
+  primary 127.0.0.1;
+  key ddns;
+}
+
+zone 2.168.192.in-addr.arpa. {
+  primary 127.0.0.1;
+  key ddns;
+}
+
+
+subnet 192.168.1.0 netmask 255.255.255.0 {
+        range 192.168.1.1 192.168.2.255;
+        option routers 192.168.1.103;
+}
+
+
+###############
+Restart dhcp and bind9
+
+systemctl restart isc-dhcp-server
+systemctl restart bind9

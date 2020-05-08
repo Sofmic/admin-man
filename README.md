@@ -20,5 +20,5 @@
 <br><br>
 */
 <li><a href="" target="_blank"></a></li>
-/*<br><br><br><br><br><br><br><br><br><br>
+/*<br><br><br><br><br>
 <a href="https://github.com/Sofmic/admin-man#start-of-content">GÓRA</a>

@@ -17,8 +17,3 @@
   <li><a href="https://github.com/Sofmic/admin-man/blob/master/usb-login">Logowanie przy pomocy USB</a></li>
   <li><a href="https://github.com/Sofmic/admin-man/blob/master/firewall-for-iptables">Dodatkowe opcje dla zapory</a></li>
 </ul>
-<br><br>
-*/
-<li><a href="" target="_blank"></a></li>
-/*<br><br><br><br><br>
-<a href="https://github.com/Sofmic/admin-man#start-of-content">GÓRA</a>

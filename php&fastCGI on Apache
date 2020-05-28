@@ -1,0 +1,13 @@
+
+Zainstaluj potrzebne pakiety
+  apt install apache2 php-fpm php-mysql php-gd php-imap php-mbstring
+
+
+Włącz moduły:
+  a2enmod alias proxy proxy_fcgi
+  
+  
+Do pliku Virtualhost'a dodaj ten blok:
+  <FilesMatch \.php$>
+    SetHandler "proxy:unix:/run/php/php7.3-fpm.sock|fcgi://localhost"
+  </FilesMatch>

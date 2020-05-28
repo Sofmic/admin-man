@@ -4,6 +4,7 @@
 <ul>
   <li><a href="https://github.com/Sofmic/admin-man/blob/master/bind9-debian">Konfiguracja DNS z dnssec</a></li>
   <li><a href="https://github.com/Sofmic/admin-man/blob/master/ddns">Dynamiczny DNS</a></li>
+  <li><a href="https://github.com/Sofmic/admin-man/blob/master/PasswordInApache2">Apache2 - hasło na folder</a></li>
 </ul>
 
 <br><br>

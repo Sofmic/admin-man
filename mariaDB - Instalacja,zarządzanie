@@ -1,0 +1,26 @@
+!!!! Na początku warto na stronie producenta znaleźć aktualną wersje oprogramowania i dodać linki do repozytorium.
+
+[ INSTALACJA ]
+
+aptitude install mariadb-server
+mysql_secure_installation
+
+[ KONFIGURACJA ]
+
+CREATE DATABASE ` nazwa bazy `;
+DROP DATABASE ` nazwa bazy `;
+
+CREATE USR `USER@HOST` identified by `haslo`;
+  user - nazwa uzytkownika
+  host - localhost/%
+  
+? GRANT;  (Wyświetlanie pomocy dla polecenia)
+
+GRANT ALL ON *.* TO `USER`@`HOST`;
+
+FLUSH PRIVILEGES; (przeładowanie uprawnień)
+
+#### #### #### Tworzenie kopii wszystkich baz danych #### #### #### 
+
+mysqldump -u root -p --all-database > nazwa-pliku
+mysql -u root -p < nazwa-pliku

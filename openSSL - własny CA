@@ -1,3 +1,4 @@
+!!!!! Uzupełniaj wszystkie pola !!!!
 
 #generowanie klucza prywatnego
 openssl genpkey -algorithm RSA -out www.firma.com.key -pkeyopt rsa_keygen_bits:2048
@@ -18,3 +19,5 @@ cp ../openssl.cnf ./
 #Tworzenie klucza oraz certyfikatu CA
 openssl req -new -x509 -extensions v3_ca -newkey rsa:4096 -keyout private/cakey.pem -out cacert.pem -days 3650
 
+#Podpisywanie certyfikatu
+openssl ca -config <PLIK KONFIGURACYJNY > -out <SCIEZKA DLA CERTYFIKATU> -infiles <PLIK ŻĄDANIA>

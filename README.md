@@ -6,7 +6,9 @@
   <li><a href="https://github.com/Sofmic/admin-man/blob/master/ddns">BIND9 - Dynamiczny DNS</a></li>
   <li><a href="https://github.com/Sofmic/admin-man/blob/master/PasswordInApache2">Apache2 - hasło na folder</a></li>
   <li><a href="https://github.com/Sofmic/admin-man/blob/master/php%26fastCGI on Apache">Apache2 - PHP z fastCGI</a></li>
-<li><a href="https://github.com/Sofmic/admin-man/blob/master/mariaDB%20-%20Instalacja%2Czarz%C4%85dzanie">mariaDB - Instalacja i zarządzanie</a></li>
+  <li><a href="https://github.com/Sofmic/admin-man/blob/master/mariaDB%20-%20Instalacja%2Czarz%C4%85dzanie">mariaDB - Instalacja i zarządzanie</a></li>
+  <li><a href="https://github.com/Sofmic/admin-man/blob/master/openSSL%20-%20w%C5%82asny%20CA">openSSL - własny CA</a></li>
+  
 </ul>
 
 <br><br>

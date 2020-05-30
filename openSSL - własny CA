@@ -14,3 +14,7 @@ echo '01' | tee /etc/ssl/CA/serial
 touch /etc/ssl/CA/index.txt
 cd /etc/ssl/CA
 cp ../openssl.cnf ./
+
+#Tworzenie klucza oraz certyfikatu CA
+openssl req -new -x509 -extensions v3_ca -newkey rsa:4096 -keyout private/cakey.pem -out cacert.pem -days 3650
+

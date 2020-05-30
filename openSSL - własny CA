@@ -1,10 +1,10 @@
 !!!!! Uzupełniaj wszystkie pola !!!!
 
 #generowanie klucza prywatnego
-openssl genpkey -algorithm RSA -out www.firma.com.key -pkeyopt rsa_keygen_bits:2048
+openssl genpkey -algorithm RSA -out <KLUCZ>.key -pkeyopt rsa_keygen_bits:2048
 
 #generowanie pliku CSR
-openssl req -new -sha256 -key <KLUCZ> -out www.firma.com.csr
+openssl req -new -sha256 -key <KLUCZ>.KEY -out <NAZWA PLIKU>.csr
 
 #Własny urząd CA
 mkdir /etc/ssl/CA

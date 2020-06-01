@@ -1,5 +1,5 @@
 # Uwagi:
- Dostosuj adresy do własnych potrzeb
+ Dostosuj adresy do własnych potrzeb   
  Nie używaj folderu /etc do przechowywania plików stref ani kluczy
 ```bash
 aptitude install bind9 bind9utils bind9-doc dnsutils -y 

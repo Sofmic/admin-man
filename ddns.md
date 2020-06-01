@@ -7,7 +7,7 @@ dnssec-keygen -a HMAC-MD5 -b 512 -r /dev/urandom -n USER ddns
 key ddns {    
 
         algorithm HMAC-MD5.SIG-ALG.REG.INT;
-        secret "\<KEY>";
+        secret "<KEY>";
 };
 ```
 ### Szybka instalacja pliku (dostosuj scieżkę)

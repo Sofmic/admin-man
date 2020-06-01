@@ -2,7 +2,7 @@
 ``` bash
 openssl genpkey -algorithm RSA -out <KLUCZ>.key -pkeyopt rsa_keygen_bits:2048
 ```
-#### Generowanie pliku CSR
+#### Generowanie pliku CSR (żądania)
 ``` bash
 openssl req -new -sha256 -key <KLUCZ>.KEY -out <NAZWA PLIKU>.csr
 ```

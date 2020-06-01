@@ -1,0 +1,26 @@
+#Instalacja narzędzi
+aptitude install lvm2
+
+#Tworzenie fizycznego woluminu log
+vpcreate <dysk> ...
+
+#Tworzenie grupy woluminów
+vgcreate <nazwa grupy (dowolna)> <urządzenia będące pod lvm>
+
+#Dodawanie dysku do grupy
+vgextend <nazwa grupy> <dysk>
+
+#Tworzenie woluminu logicznego
+lvcreate --name <nazwa dla woluminu logicznego> --size <rozmiar> <nazwa grupy woluminów>
+
+#Podglad
+lvs
+
+#formatowanie partycji
+mkfs.<nazwa fs> /dev/mapper/<partycja>
+
+#Partycje można zamontować
+
+#Rozszerzanie partycji jeśli jest miejsce o 10GB
+lvextend --size +10g --resizefs /dev/mapper/<partycja>
+

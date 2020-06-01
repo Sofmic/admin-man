@@ -1,7 +1,3 @@
-#!/bin/bash
-
-############################
-
 # Jako parametr należy podać nazwe domeny np: ./bind9-debian dom.com
 
 # Uwagi:
@@ -9,9 +5,8 @@
 # Linie oznaczone    #ADDRESS    wymagają dostosowania adresu.
 # /etc nie sprawdzi się jako folder dla stref podpisanych gdyż bind nie ma pozwolenia na dodawanie czegokolwiek do /etc/...
 
-###########################
 
-aptitude install bind9 bind9utils bind9-doc dnsutils -y && echo "[ Zainstalowano ]"
+###aptitude install bind9 bind9utils bind9-doc dnsutils -y && echo "[ Zainstalowano ]"
 mkdir -p /var/cache/bind/master
 dnssec-keygen -b 2048 -K /var/cache/bind/ $1
 dnssec-keygen -b 2048 -f ksk -K /var/cache/bind/ $1

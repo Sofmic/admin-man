@@ -15,7 +15,13 @@ chmod 0700 /etc/ssl/CA/private
 echo '01' | tee /etc/ssl/CA/serial
 touch /etc/ssl/CA/index.txt
 cd /etc/ssl/CA
-cp ../openssl.cnf ./
+cp ../openssl.cnf ./  
+```
+#### Zmień w openssl.cnf (plik konfiguracyjny)
+``` bash
+[ CA_default ]
+
+dir		= .
 ```
 #### Tworzenie klucza oraz certyfikatu CA
 ``` bash

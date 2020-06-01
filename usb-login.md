@@ -10,6 +10,7 @@
 
 5. cat /etc/pam.d/common-auth
 
-Powinniśmy znaleść tam:
+Powinniśmy znaleść tam:```
 auth	sufficient      pam_usb.so 
 auth	[success=1 default=ignore]	pam_unix.so nullok_secure try_first_pass
+```

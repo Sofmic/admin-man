@@ -1,13 +1,11 @@
 # Uwagi:
- Dostosuj adresy do własnych potrzeb
+ Dostosuj adresy do własnych potrzeb   
  Nie używaj folderu /etc do przechowywania plików stref ani kluczy
 ```bash
 aptitude install bind9 bind9utils bind9-doc dnsutils -y 
 mkdir -p /var/cache/bind/master
 dnssec-keygen -b 2048 -K /var/cache/bind/ <NAZWA DOMENY>
 dnssec-keygen -b 2048 -f ksk -K /var/cache/bind/ <NAZWA DOMENY>
-chown -R bind:bind /var/cache/bind
-chmod -R 700 /var/cache/bind
 ```
 ############################################################
 ### /etc/bind/named.conf.options
@@ -82,6 +80,8 @@ $TTL 604800
 ############################################################
 #### Podpisywanie rekordów
  ``` bash
+chown -R bind:bind /var/cache/bind
+chmod -R 700 /var/cache/bind
 rndc reload
 rndc reconfig
 rndc sign <NAZWA DOMENY>

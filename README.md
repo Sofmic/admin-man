@@ -17,7 +17,7 @@
   <li><a href="https://github.com/Sofmic/admin-man/blob/master/remote-conf-iptables.md">Zdalna konfiguracja iptables</a></li>
   <li><a href="https://github.com/Sofmic/admin-man/blob/master/set-ntp-server.md">Ustawianie synchronizacji czasu</a></li>
   <li><a href="https://github.com/Sofmic/admin-man/blob/master/team-interface.md">Łączenie interfejsów sieciowych</a></li>
-  <li><a href="https://github.com/Sofmic/admin-man/blob/master/usb-login.md.md">Logowanie przy pomocy USB</a></li>
+  <li><a href="https://github.com/Sofmic/admin-man/blob/master/usb-login.md">Logowanie przy pomocy USB</a></li>
   <li><a href="https://github.com/Sofmic/admin-man/blob/master/firewall-for-iptables.md">Dodatkowe opcje dla zapory</a></li>
   <li><a href="https://github.com/Sofmic/admin-man/blob/master/LVM%20-%20na%20linuxie.md">LVM - na linuxie</a></li>
   <li><a href="https://github.com/Sofmic/admin-man/blob/master/Bootable%20USB%20-%20uniwersalna%20metoda.md">Bootable USB - uniwersalna metoda</a></li>

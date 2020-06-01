@@ -1,6 +1,0 @@
-Jeżeli konfigurujemy iptables na odległej maszynie, warto zrobić to tak aby nie stracić z nią połączenia.
-
-iptables-apply [ -w "scieżka dla bezpiecznej konfiguracji" ] -c "ścieżka do skrypt wprowadzającego zmiany"
-
-Po wykonaniu polecenia program sprawdzi poprawność składni, następnie wykona skrypt i poprosi użytkownika o zatwierdzenie.
-Jeśli to zatwierdzenie uda się przesłać to znaczy że nie utraciliśmy połączenia z maszyną.

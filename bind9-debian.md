@@ -1,5 +1,5 @@
 # Uwagi:
- Dostosuj adresy do własnych potrzeb   
+ Dostosuj adresy do własnych potrzeb
  Nie używaj folderu /etc do przechowywania plików stref ani kluczy
 ```bash
 aptitude install bind9 bind9utils bind9-doc dnsutils -y 
@@ -44,8 +44,9 @@ zone "<ORIGIN DLA REVERSE>.in-addr.arpa" {
 ```
  
  ############################################################
-#### /var/cache/bind/master/<NAZWA DOMENY>
+#### /var/cache/bind/master/\<NAZWA DOMENY>
  ``` bash
+ $ORIGIN <NAZWA DOMENY>.
  $TTL 604800
 @       IN      SOA     ns1.<NAZWA DOMENY>. mail.<NAZWA DOMENY>. (
                               6         ; Serial
@@ -54,23 +55,17 @@ zone "<ORIGIN DLA REVERSE>.in-addr.arpa" {
                         2419600         ; Expire
                          604600 )       ; Negative Cache TTL
 
-@	IN      NS      ns1.<NAZWA DOMENY>.
-@ IN      A       192.168.1.103
-ns1 IN       A      192.168.1.103
-
-<NAZWA DOMENY>. IN  MX  10  mail.<NAZWA DOMENY>.
-
-www     IN       A       192.168.1.103
-mail    IN       A       192.168.1.103
-
-ftp     IN      CNAME    <NAZWA DOMENY>.
+ 	IN      NS      ns1.<NAZWA DOMENY>.
+ 	IN	MX  10  mail.<NAZWA DOMENY>.
+@ 	IN      A       192.168.1.103
+ns1 	IN      A	192.168.1.103
+mail    IN      A       192.168.1.103
 ``` 
-
-
 ############################################################
-#### /var/cache/bind/master/<NAZWA DOMENY>.rev
+#### /var/cache/bind/master/\<NAZWA DOMENY>.rev
 
 ``` bash
+$ORIGIN 1.168.192.in-addr.arpa.
 $TTL 604800
 @       IN      SOA     <NAZWA DOMENY>. mail.<NAZWA DOMENY>. (
                              21         ; Serial
@@ -79,12 +74,10 @@ $TTL 604800
                         2419270         ; Expire
                          604880 )       ; Negative Cache TTL
 
-@       IN      NS      ns1.<NAZWA DOMENY>.
-ns1 IN      A       192.168.1.103
-
-103      IN      PTR     ns1.<NAZWA DOMENY>.
-103      IN      PTR     www.<NAZWA DOMENY>.
-103      IN      PTR     mail.<NAZWA DOMENY>.
+ 	IN      NS      ns1.<NAZWA DOMENY>.
+103	IN	PTR	<NAZWA DOMENY>.
+103     IN      PTR     ns1.<NAZWA DOMENY>.
+103     IN      PTR     mail.<NAZWA DOMENY>.
  ```
 ############################################################
 #### Podpisywanie rekordów

@@ -1,3 +1,4 @@
+#### Po wykonaniu upewnijmy się czy wszystkie nasze usługi działają:
 ``` bash
 echo 1 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts
 echo 1 > /proc/sys/net/ipv4/icmp_ignore_bogus_error_responses

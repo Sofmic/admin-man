@@ -5,8 +5,9 @@
 * **`master.cf`** - konfiguracja procesów 
 
 **Instalacja**:   
+``` bash
 aptitude install postfix -y
-  
+```
 **Na start:**     
 W pliku /etc/postfix/main.conf ustawiamy (zmień opcje w <>):
 ``` bash

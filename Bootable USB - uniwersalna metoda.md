@@ -23,7 +23,6 @@ mkdir /mnt/usb
 mount -o loop <PLIK>.iso /mnt/iso
 mount /dev/<WIĘKSZA PARTYCJA> /mnt/usb
 ```
-#
 ### Kopiujemy zawartość z pliku do usb
 ``` bash
 cp -R /mnt/iso/* /mnt/usb/

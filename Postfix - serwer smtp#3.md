@@ -67,5 +67,6 @@ ZGFyZWs=
 aGFzbG9kYXJrYQ==
 235 2.7.0 Authentication successful
 ```
-Najpierw używam openssl s_client
-następnie wpisuje AUTH LOGIN po czym w base64 podaje nazwę użytkownika i hasło.
+Najpierw używam openssl s_client   
+następnie wpisuje AUTH LOGIN  
+a na końcu w base64 podaje nazwę użytkownika i hasło.

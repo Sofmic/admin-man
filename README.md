@@ -9,9 +9,9 @@
   <li><a href="https://github.com/Sofmic/admin-man/blob/master/mariaDB%20-%20Instalacja%2Czarz%C4%85dzanie.md">mariaDB - Instalacja i zarządzanie</a></li>
   <li><a href="https://github.com/Sofmic/admin-man/blob/master/openSSL%20-%20w%C5%82asny%20CA.md">openSSL - własny CA</a></li>
   <li><a href="https://github.com/Sofmic/admin-man/blob/master/Varnish%20-%20cache%20server.md">Varnish - cache server</a></li>
-    <li><a href="https://github.com/Sofmic/admin-man/blob/master/Postfix%20-%20serwer%20smtp#1.md">Postfix - serwer smtp #1</a></li>
-  <li><a href="https://github.com/Sofmic/admin-man/blob/master/Postfix%20-%20serwer%20smtp#2.md">Postfix - serwer smtp #2</a></li>
-  <li><a href="https://github.com/Sofmic/admin-man/blob/master/Postfix%20-%20serwer%20smtp#3.md">Postfix - serwer smtp #3</a></li>
+    <li><a href="https://github.com/Sofmic/admin-man/blob/master/Postfix%20-%20serwer%20smtp%231.md">Postfix - serwer smtp #1</a></li>
+  <li><a href="https://github.com/Sofmic/admin-man/blob/master/Postfix%20-%20serwer%20smtp%232.md">Postfix - serwer smtp #2</a></li>
+  <li><a href="https://github.com/Sofmic/admin-man/blob/master/Postfix%20-%20serwer%20smtp%233.md">Postfix - serwer smtp #3</a></li>
 </ul>
 
 <br><br>

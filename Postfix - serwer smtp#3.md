@@ -45,7 +45,7 @@ passdb {
 ```
 **Testowanie:**
 ``` bash
-openssl s_client -connect <ADRES MX>:25 -starttls smtp <<koniec
+openssl s_client -connect <ADRES MX>:25 -starttls smtp
 ehlo ja.com
 
 250-firma.com

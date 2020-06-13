@@ -12,16 +12,8 @@ aptitude install postfix -y
 W pliku /etc/postfix/main.conf ustawiamy (zmień opcje w <>):
 ``` bash
 myhostname = <nazwa internetowa komputera, najcześciej domena>
-inet_intefaces = <interfejs albo all>
-inet_protocols = <all>
-home_mailbox = Maildir/
+mydomain = firma.com
 mynetworks = <dopisujemy po spacji swoją sieć>
-```
-W folderze użytkownika tworzymy strukture i ustawiamy prawa:
-``` bash
-mkdir -p /home/<USER>/Maildir/{cur,new,tmp}
-chown <USER>:<USER> -R /home/<USER>/Maildir/{cur,new,tmp}
-chmod 0700 -R /home/<USER>/Maildir/{cur,new,tmp}
 ```
 W tej chwili restartujemy serwer i możemy spróbować wysłać naszą pierwszą wiadomość:
 ``` bash
@@ -36,7 +28,10 @@ quit
 koniec
 ```
 Jeżeli w logach znajdziemy "status=sent (delivered to maildir)" to oznacza że wiadomość dotarła.
+``` bash
+vim /var/log/mail.log
+```
 Możemy ją także przeczytać:
 ``` bash
-vim /home/<USER2>/Maildir/new/*
+vim /var/mail/*
 ```

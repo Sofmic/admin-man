@@ -27,14 +27,14 @@ postconf -e "smtpd_sasl_tls_security_options = noanonymous"
 postconf -e "smtpd_tls_auth_only = yes"
 postconf -e "smtpd_relay_restrictions = permit_mynetworks, permit_sasl_authenticated, reject_unauth_destination"
 postconf -e "smtpd_sender_login_maps = hash:/etc/postfix/lista_wysylajacych"
+postconf -e "smtpd_recipient_restrictions = reject_sender_login_mismatch, permit_sasl_authenticated, reject_unauthenticated_sender_login_mismatch"
 ```
-#### Nalezy zrobić plik "lista_wysylajacych" i wpisać do niego email oraz login wlasciciela tego adresu
+#### Tworzymy plik "lista_wysylajacych" i wpisujemy do niego email oraz login wlasciciela tego adresu
+``` bash
 touch /etc/postfix/lista_wysylajacych
 np: darek@firma.com darek
-``` bash
-postconf -e "smtpd_recipient_restrictions = reject_sender_login_mismatch, permit_sasl_authenticated, reject_unauthenticated_sender_login_mismatch"
 ```
 #### Według dokumentacji jest to dobre ustawienie dla źle skonfigurowanych klientów
 ``` bash
-postconf -e "smtpd_sasl_local_domain = firma.com"
+postconf -e "smtpd_sasl_local_domain = <nazwa domeny>"
 ```

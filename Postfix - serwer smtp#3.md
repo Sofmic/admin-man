@@ -38,3 +38,10 @@ np: darek@firma.com darek
 ``` bash
 postconf -e "smtpd_sasl_local_domain = <nazwa domeny>"
 ```
+### Test
+``` bash
+openssl s_client -connect firma.com:25 -starttls smtp
+Wyliczymy skrot ktorym sie logujemy
+echo -ne '\000user\000password' | openssl base64
+AUTH LOGIN <wynik tego wyzej>
+```

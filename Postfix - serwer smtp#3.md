@@ -1,19 +1,16 @@
-### Uwierzytelnianie w postfix
-[SASL](https://pl.wikipedia.org/wiki/Simple_Authentication_and_Security_Layer) czyli prosty sposób na implementacje uwierzytelniania.
-Do jego wdrożenia użyje serwera Dovecot.
+### Uwierzytelnianie w postfix (implementacja w dovecot)
 ``` bash
-aptitude install dovecot-core -y
+aptitude install dovecot-core dovecot-pop3d dovecot-imapd -y
 ```
- ### Edytujemy /etc/dovecot/conf.d/10-master.conf
+ ### /etc/dovecot/conf.d/10-master.conf
  ``` bash
-service auth {
-  unix_listener /var/spool/postfix/private/auth {
-    mode = 0660
-    # Assuming the default Postfix user and group
-    user = postfix
-    group = postfix        
-  }
-
+szukamy sekcji "service auth" a nastepnie komentarza "Postfix smtp-auth"
+odblokowujemy tą klamre i dodajemy do niej:
+user = postfix
+group = postfix
+```
+### /etc/dovecot/conf.d/10-auth.conf
+``` bash
 auth_mechanisms = plain login
 ```
 ### Edytuj /etc/postfix/main.cf
@@ -21,52 +18,22 @@ auth_mechanisms = plain login
 postconf -e "smtpd_sasl_type = dovecot"
 postconf -e "smtpd_sasl_path = private/auth"
 postconf -e "smtpd_sasl_auth_enable = yes"
+postconf -e "broken_sasl_auth_clients = yes"
+```
+### Ustawianie polis serwera i zabezpieczen
+``` bash
+postconf -e "smtpd_sasl_security_options = noanonymous, noplaintext"
+postconf -e "smtpd_sasl_tls_security_options = noanonymous"
+postconf -e "smtpd_tls_auth_only = yes"
 postconf -e "smtpd_relay_restrictions = permit_mynetworks, permit_sasl_authenticated, reject_unauth_destination"
-
+postconf -e "smtpd_sender_login_maps = hash:/etc/postfix/lista_wysylajacych"
 ```
-<br /> 
-
-**Kwestie poświadczeń zmienimy w:** 
-
+###### teraz nalezy zrobić ten plik i wpisać do niego email oraz login wlasciciela tego adresu 
+np: darek@firma.com darek
 ``` bash
-/etc/dovecot/conf.d/auth-system.conf.ext
+postconf -e "smtpd_recipient_restrictions = reject_sender_login_mismatch, permit_sasl_authenticated, reject_unauthenticated_sender_login_mismatch"
 ```
-**Domyślnie użytkownicy są brani z pliku passwd:**
+###### Według dokumentacji jest to dobre ustawienie dla źle skonfigurowanych klientów
 ``` bash
-userdb {
-  driver = passwd
-}
+postconf -e "smtpd_sasl_local_domain = firma.com"
 ```
-**a hasła względem modułu pam:**
-``` bash
-passdb {
-  driver = pam
-}
-```
-**Testowanie:**
-``` bash
-openssl s_client -connect <ADRES MX>:25 -starttls smtp
-ehlo ja.com
-
-250-firma.com
-250-PIPELINING
-250-SIZE 10240000
-250-VRFY
-250-ETRN
-250-AUTH PLAIN LOGIN
-250-ENHANCEDSTATUSCODES
-250-8BITMIME
-250-DSN
-250-SMTPUTF8
-250 CHUNKING
-
-AUTH LOGIN
-334 VXNlcm5hbWU6
-ZGFyZWs=
-334 UGFzc3dvcmQ6
-aGFzbG9kYXJrYQ==
-235 2.7.0 Authentication successful
-```
-Najpierw używam openssl s_client   
-następnie wpisuje AUTH LOGIN  
-a na końcu w base64 podaje nazwę użytkownika i hasło.
